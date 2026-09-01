@@ -9,9 +9,10 @@
     <h1>Game inventory</h1>
     <div>
         <h2>Games</h2>
+        <form action="/games/create" method="get"><button type="submit" >Add A Game</button></form>
         
         
-        <a href="/game">See All Games</a>
+        <a href="/games">See All Games</a>
         <ul>
             <% if (locals.games) { %>
                 <% games.forEach(game => { %>

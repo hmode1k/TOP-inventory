@@ -34,6 +34,29 @@ async function deleteCategory(id) {
   await pool.query("DELETE FROM categories WHERE id = $1", [id]);
 }
 
+async function getGameById(id) {
+  const { rows } = await pool.query("SELECT * FROM games WHERE id = $1", [id]);
+  return rows;
+}
+
+async function addGame(name, description, categoryId) {
+  await pool.query(
+    "INSERT INTO games (game_name, game_description, category_id) VALUES ($1, $2, $3)",
+    [name, description, categoryId],
+  );
+}
+
+async function editGame(name, description, categoryId, gameId) {
+  await pool.query(
+    "UPDATE games SET game_name = $1, game_description = $2, category_id = $3 WHERE id = $4",
+    [name, description, categoryId, gameId],
+  );
+}
+
+async function deleteGame(id) {
+  await pool.query("DELETE FROM games WHERE id = $1", [id]);
+}
+
 module.exports = {
   getAllGames,
   getAllCategories,
@@ -41,4 +64,8 @@ module.exports = {
   addCategory,
   editCategory,
   deleteCategory,
+  getGameById,
+  addGame,
+  editGame,
+  deleteGame,
 };

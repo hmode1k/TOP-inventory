@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1><%= locals.game[0].game_name %></h1>
+    <form action="/games/<%= locals.game[0].id %>/edit" method="POST">
+        <label for="name">Game Name:</label>
+        <input type="text" name="name" value="<%= locals.game[0].game_name %>">
+        <label for="description">Description</label>
+        <input type="text" name="description" id="" value="<%= locals.game[0].game_description %>">
+        <label for="category">Category: </label>
+        <select name="category" id="category" value="<%= locals.game[0].category_id %>">
+            <% locals.categories.forEach(category => { %>
+                <option value="<%= category.id %>" <%= category.id === locals.game[0].category_id ? "selected" : "" %>><%= category.category %></option>
+            <% }) %>
+        </select>
+        <button type="submit">Edit</button>
+    </form>
+
+    <a href="/games/<%= locals.game[0].id %>/delete">DELETE Game</a>
+</body>
+</html>

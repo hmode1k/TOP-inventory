@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Add A New Game</h1>
+    <form action="/games/create" method="POST" >
+        <label for="name">Name:</label>
+        <input type="text" name="name" placeholder="Name" required>
+        <label for="description">Description: </label>
+        <input type="text" name="description" placeholder="Description.. ">
+        <label for="category">Category</label>
+        <select name="category" id="category">
+            <% locals.categories.forEach(category => { %>
+                <option value="<%= category.id %>"><%= category.category %></option>
+            <% }) %>
+        </select>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
